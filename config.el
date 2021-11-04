@@ -6,8 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+(setq user-full-name "Yuan Wang"
+      user-mail-address "yuan.wang@workiva.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -25,17 +25,64 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-palenight
+      doom-font (font-spec :family "PragmataPro" :size 18))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/org/"
+      org-roam-directory (concat org-directory "roam/")
+       org-agenda-files (append
+                         (file-expand-wildcards (concat org-directory "*.org"))
+                         (file-expand-wildcards (concat org-directory "agenda/*.org"))
+                         (file-expand-wildcards (concat org-directory "projects/*.org")))
+       org-default-notes-file (concat org-directory "agenda/inbox.org")
+       +org-capture-notes-file (concat org-directory "agenda/inbox.org")
+       +org-capture-todo-file (concat org-directory "agenda/inbox.org")
+)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type nil)
 
+(after! browse-at-remote
+  (setq browse-at-remote-add-line-number-if-no-region-selected t))
 
+(after! org
+  (setq org-eukleides-path (getenv "EUKLEIDES_PATH"))
+  (setq org-agenda-dim-blocked-tasks nil)
+  (setq org-agenda-inhibit-startup t)
+  (setq org-agenda-use-tag-inheritance nil)
+  (setq org-modules
+   (quote
+    (org-habit org-bibtex ))))
+
+(require 'org-habit)
+(require 'interaction-log)
+
+ (setq
+    magit-list-refs-sortby "-committerdate"
+    ;; org-export-with-broken-links t
+    ;; org-id-track-globally t
+    lsp-enable-on-type-formatting nil
+    lsp-java-completion-max-results 20
+    lsp-java-vmargs
+      '("-noverify"
+        "-Xmx5G"
+        "-Xms100m"
+        "-XX:+UseParallelGC"
+        "-XX:GCTimeRatio=4"
+        "-XX:AdaptiveSizePolicyWeight=90"
+        "-Dsun.zip.disableMemoryMapping=true"
+        "-XX:+UseStringDeduplication"
+        "-javaagent:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar"
+        "-Xbootclasspath/a:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar"))
+
+(setq lsp-java-configuration-runtimes '[(:name "JavaSE-1.8"
+						:path "/Users/yuanwang/.sdkman/candidates/java/8.0.242.j9-adpt/")
+					(:name "JavaSE-11"
+						:path "/Users/yuanwang/.sdkman/candidates/java/11.0.4-amzn/"
+						:default t)])
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
