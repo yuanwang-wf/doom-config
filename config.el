@@ -45,22 +45,30 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type nil)
 
+(setq company-idle-delay 1)
+
+;; Disable invasive lsp-mode features
+(setq lsp-ui-sideline-enable nil   ; not anymore useful than flycheck
+      lsp-ui-doc-enable nil        ; slow and redundant with K
+      lsp-enable-symbol-highlighting nil
+      ;; If an LSP server isn't present when I start a prog-mode buffer, you
+      ;; don't need to tell me. I know. On some systems I don't care to have a
+      ;; whole development environment for some ecosystems.
+      +lsp-prompt-to-install-server 'quiet)
+
+(use-package! interaction-log)
+
 (after! browse-at-remote
   (setq browse-at-remote-add-line-number-if-no-region-selected t))
 
 (after! org
-  (setq org-eukleides-path (getenv "EUKLEIDES_PATH"))
-  (setq org-agenda-dim-blocked-tasks nil)
-  (setq org-agenda-inhibit-startup t)
-  (setq org-agenda-use-tag-inheritance nil)
-  (setq org-modules
-   (quote
-    (org-habit org-bibtex ))))
+  (setq org-eukleides-path (getenv "EUKLEIDES_PATH")
+        org-agenda-dim-blocked-tasks nil
+        org-agenda-inhibit-startup t
+        org-agenda-use-tag-inheritance nil)
+  (add-to-list 'org-modules 'org-habit))
 
-(require 'org-habit)
-(require 'interaction-log)
-
- (setq
+(setq
     magit-list-refs-sortby "-committerdate"
     ;; org-export-with-broken-links t
     ;; org-id-track-globally t
