@@ -45,7 +45,7 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type nil)
 
-(setq company-idle-delay 1)
+(setq company-idle-delay 0.2)
 
 ;; Disable invasive lsp-mode features
 (setq lsp-ui-sideline-enable nil   ; not anymore useful than flycheck
@@ -54,7 +54,8 @@
       ;; If an LSP server isn't present when I start a prog-mode buffer, you
       ;; don't need to tell me. I know. On some systems I don't care to have a
       ;; whole development environment for some ecosystems.
-      +lsp-prompt-to-install-server 'quiet)
+      ;;+lsp-prompt-to-install-server 'quiet
+      )
 
 (use-package! interaction-log)
 
