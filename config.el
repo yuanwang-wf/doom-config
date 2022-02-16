@@ -2,13 +2,12 @@
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
-
-
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Yuan Wang"
       user-mail-address "yuan.wang@workiva.com")
-
+(add-to-list 'default-frame-alist '(height . 24))
+(add-to-list 'default-frame-alist '(width . 80))
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
@@ -67,7 +66,8 @@
         org-agenda-dim-blocked-tasks nil
         org-agenda-inhibit-startup t
         org-agenda-use-tag-inheritance nil)
-  (add-to-list 'org-modules 'org-habit))
+  (add-to-list 'org-modules 'org-habit)
+  )
 
 (setq
     magit-list-refs-sortby "-committerdate"
@@ -75,6 +75,7 @@
     ;; org-id-track-globally t
     lsp-enable-on-type-formatting nil
     lsp-java-completion-max-results 20
+    lsp-java-jdt-download-url "https://download.eclipse.org/jdtls/milestones/1.8.0/jdt-language-server-1.8.0-202201261434.tar.gz"
     lsp-java-vmargs
       '("-noverify"
         "-Xmx5G"
@@ -84,8 +85,8 @@
         "-XX:AdaptiveSizePolicyWeight=90"
         "-Dsun.zip.disableMemoryMapping=true"
         "-XX:+UseStringDeduplication"
-        "-javaagent:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar"
-        "-Xbootclasspath/a:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar"))
+        "-javaagent:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.16/lombok-1.18.16.jar"
+        "-Xbootclasspath/a:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.16/lombok-1.18.16.jar"))
 
 (setq lsp-java-configuration-runtimes '[(:name "JavaSE-1.8"
 						:path "/Users/yuanwang/.sdkman/candidates/java/8.0.242.j9-adpt/")
