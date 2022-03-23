@@ -73,7 +73,6 @@
     ;; org-id-track-globally t
     lsp-enable-on-type-formatting nil
     lsp-java-completion-max-results 20
-    lsp-java-jdt-download-url "https://download.eclipse.org/jdtls/milestones/1.8.0/jdt-language-server-1.8.0-202201261434.tar.gz"
     lsp-java-vmargs
       '("-noverify"
         "-Xmx5G"
