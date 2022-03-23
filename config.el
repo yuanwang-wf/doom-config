@@ -6,8 +6,6 @@
 ;; clients, file templates and snippets.
 (setq user-full-name "Yuan Wang"
       user-mail-address "yuan.wang@workiva.com")
-(add-to-list 'default-frame-alist '(height . 24))
-(add-to-list 'default-frame-alist '(width . 80))
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
