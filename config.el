@@ -42,12 +42,50 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type nil)
 
-(setq company-idle-delay 0.2)
+;; Prevents some cases of Emacs flickering.
+(add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
+
+;;
+;;; Keybinds
+
+(map! (:after evil-org
+       :map evil-org-mode-map
+       :n "gk" (cmd! (if (org-on-heading-p)
+                         (org-backward-element)
+                       (evil-previous-visual-line)))
+       :n "gj" (cmd! (if (org-on-heading-p)
+                         (org-forward-element)
+                       (evil-next-visual-line))))
+
+      :o "o" #'evil-inner-symbol
+
+      :leader
+      ;; (:prefix "n"
+      ;;  "b" #'org-roam-buffer-toggle
+      ;;  "d" #'org-roam-dailies-goto-today
+      ;;  "D" #'org-roam-dailies-goto-date
+      ;;  "i" #'org-roam-node-insert
+      ;;  "r" #'org-roam-node-find
+      ;;  "R" #'org-roam-capture)
+
+      (:prefix "i"
+       "o" #'org-insert-todo-heading
+       )
+
+      )
+
+(after! company
+(setq company-idle-delay 0.2))
+
+;;; :ui modeline
+;; An evil mode indicator is redundant with cursor shape
+(advice-add #'doom-modeline-segment--modals :override #'ignore)
 
 ;; Disable invasive lsp-mode features
 (setq lsp-ui-sideline-enable nil   ; not anymore useful than flycheck
       lsp-ui-doc-enable nil        ; slow and redundant with K
       lsp-enable-symbol-highlighting nil
+      lsp-file-watch-threshold 5000
       ;; If an LSP server isn't present when I start a prog-mode buffer, you
       ;; don't need to tell me. I know. On some systems I don't care to have a
       ;; whole development environment for some ecosystems.
@@ -85,9 +123,7 @@
         "-javaagent:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.16/lombok-1.18.16.jar"
         "-Xbootclasspath/a:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.16/lombok-1.18.16.jar"))
 
-(setq lsp-java-configuration-runtimes '[(:name "JavaSE-1.8"
-						:path "/Users/yuanwang/.sdkman/candidates/java/8.0.242.j9-adpt/")
-					(:name "JavaSE-11"
+(setq lsp-java-configuration-runtimes '[(:name "JavaSE-11"
 						:path "/Users/yuanwang/.sdkman/candidates/java/11.0.4-amzn/"
 						:default t)])
 ;; Here are some additional functions/macros that could help you configure Doom:
