@@ -53,15 +53,8 @@
   :recipe (:host github :repo "bnbeckwith/writegood-mode"))
 (package! evil-motion-trainer
   :recipe (:host github :repo "martinbaillie/evil-motion-trainer"))
-(package! agda-input
-    :recipe (:host github :repo "agda/agda"
-             :files ("src/data/emacs-mode/agda-input.el")
-             :nonrecursive t)
-    :pin "59c7944b1a2e8015e473eb1932353818614a1e5b")
-
-(package! agda2-mode
-    :recipe (:host github :repo "agda/agda"
-             :files ("src/data/emacs-mode/*.el"
-                     (:exclude "agda-input.el"))
-             :nonrecursive t)
-    :pin "af9c4b968698e285c453516b2104a347ad954849")
+(package! tree-sitter)
+(package! tree-sitter-langs)
+(package! evil-textobj-tree-sitter)
+(package! ts-fold
+  :recipe (:host github :repo "jcs090218/ts-fold"))
