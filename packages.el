@@ -53,8 +53,4 @@
   :recipe (:host github :repo "bnbeckwith/writegood-mode"))
 (package! evil-motion-trainer
   :recipe (:host github :repo "martinbaillie/evil-motion-trainer"))
-;; (package! tree-sitter)
-;; (package! tree-sitter-langs)
-;; (package! evil-textobj-tree-sitter)
-;; (package! ts-fold
-;;   :recipe (:host github :repo "jcs090218/ts-fold"))
+(package! super-save)

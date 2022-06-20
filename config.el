@@ -104,7 +104,13 @@
         org-agenda-use-tag-inheritance nil)
   (add-to-list 'org-modules 'org-habit)
   )
-
+(use-package! super-save
+  :config
+  (add-to-list 'super-save-triggers 'vertico)
+  (add-to-list 'super-save-triggers 'magit)
+  (add-to-list 'super-save-triggers 'find-file)
+  (add-to-list 'super-save-triggers 'winner-undo)
+  (super-save-mode +1))
 (setq
     magit-list-refs-sortby "-committerdate"
     ;; org-export-with-broken-links t
