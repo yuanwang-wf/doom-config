@@ -93,7 +93,12 @@
       )
 
 (use-package! interaction-log)
-
+(use-package! org-wild-notifier
+  :config
+  (after! org
+  (org-wild-notifier-mode)
+  (setq org-wild-notifier-alert-time '(60 30)))
+ )
 (after! browse-at-remote
   (setq browse-at-remote-add-line-number-if-no-region-selected t))
 
@@ -111,6 +116,7 @@
   (add-to-list 'super-save-triggers 'find-file)
   (add-to-list 'super-save-triggers 'winner-undo)
   (super-save-mode +1))
+
 (setq
     magit-list-refs-sortby "-committerdate"
     ;; org-export-with-broken-links t
