@@ -55,3 +55,4 @@
   :recipe (:host github :repo "martinbaillie/evil-motion-trainer"))
 (package! super-save)
 (package! org-wild-notifier)
+(package! thrift-mode)

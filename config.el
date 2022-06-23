@@ -93,11 +93,16 @@
       )
 
 (use-package! interaction-log)
+(use-package! thrift-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.frugal\\'" . thrift-mode ) ))
 (use-package! org-wild-notifier
   :config
   (after! org
   (org-wild-notifier-mode)
-  (setq org-wild-notifier-alert-time '(60 30)))
+  (setq
+   org-wild-notifier-alert-time '(60 30)
+   alert-default-style 'osx-notifier))
  )
 (after! browse-at-remote
   (setq browse-at-remote-add-line-number-if-no-region-selected t))
