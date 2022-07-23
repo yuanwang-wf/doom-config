@@ -123,6 +123,8 @@
   (super-save-mode +1))
 
 (setq
+    smerge-command-prefix "\C-cv"
+
     magit-list-refs-sortby "-committerdate"
     ;; org-export-with-broken-links t
     ;; org-id-track-globally t
