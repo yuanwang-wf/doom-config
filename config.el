@@ -102,7 +102,7 @@
   (org-wild-notifier-mode)
   (setq
    org-wild-notifier-alert-time '(60 30)
-   alert-default-style 'notifier))
+   alert-default-style 'osx-notifier))
  )
 (after! browse-at-remote
   (setq browse-at-remote-add-line-number-if-no-region-selected t))
