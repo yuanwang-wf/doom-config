@@ -122,6 +122,9 @@
   (add-to-list 'super-save-triggers 'winner-undo)
   (super-save-mode +1))
 
+(use-package! embark-vc
+  :after embark)
+
 (setq
     smerge-command-prefix "\C-cv"
 
