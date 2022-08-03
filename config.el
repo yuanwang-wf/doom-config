@@ -124,6 +124,12 @@
 
 (use-package! embark-vc
   :after embark)
+(use-package! evil-replace-with-register
+  :config
+(map!
+        :n  "gR"  #'evil-replace-with-register
+        :v  "gR"  #'evil-replace-with-register)
+ (evil-replace-with-register-install))
 
 (setq
     smerge-command-prefix "\C-cv"
