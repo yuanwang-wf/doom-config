@@ -58,4 +58,5 @@
 (package! thrift-mode)
 (package! embark-vc)
 (package! evil-replace-with-register)
+;;https://github.com/emacs-tree-sitter/tree-sitter-langs/pull/110
 (package! tree-sitter-langs :pin "313e51eff61aefff520b221b283be5c9e948d64b" )

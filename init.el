@@ -132,7 +132,8 @@
        ;;crystal           ; ruby at the speed of c
        ;;csharp            ; unity, .NET, and mono shenanigans
        ;;data              ; config/data formats
-       (dart +lsp)   ; paint ui and not much else
+       (dart +lsp   )   ; paint ui and not much else
+
        ;;dhall
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
@@ -167,7 +168,7 @@
         )               ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
-       (purescript +lsp +tree-sitter )        ; javascript, but functional
+       ;; (purescript +lsp +tree-sitter )        ; javascript, but functional
 
        (python +lsp  +tree-sitter )            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
