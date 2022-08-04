@@ -36,9 +36,8 @@
   :custom
   (corfu-separator ?\s)          ;; Orderless field separator
   (corfu-preview-current t)    ;; Disable current candidate preview
-  (corfu-auto t)
-
-( corfu-cycle t)
+  (corfu-auto nil)
+  (corfu-cycle t)
   (corfu-on-exact-match nil)
   (corfu-quit-no-match 'separator)
   (corfu-preselect-first nil)
