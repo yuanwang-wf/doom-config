@@ -56,7 +56,6 @@
 (package! super-save)
 (package! org-wild-notifier)
 (package! thrift-mode)
-(package! agda2-mode
-     :pin "442c76badc353d1b621243c43293106f60f7d746")
 (package! embark-vc)
 (package! evil-replace-with-register)
+(package! tree-sitter-langs :pin "313e51eff61aefff520b221b283be5c9e948d64b" )
