@@ -18,7 +18,7 @@
 (add-hook 'lsp-completion-mode-hook
           (lambda ()
             (setf (alist-get 'lsp-capf completion-category-defaults) '((styles . (orderless))))))
-
+;; https://github.com/minad/cape#configuration
 ;; Set bindings
 (map! :i "C-@" #'completion-at-point
       :i "C-SPC" #'completion-at-point
@@ -36,7 +36,7 @@
   :custom
   (corfu-separator ?\s)          ;; Orderless field separator
   (corfu-preview-current t)    ;; Disable current candidate preview
-  (corfu-auto nil)
+  (corfu-auto t)
   (corfu-cycle t)
   (corfu-on-exact-match nil)
   (corfu-quit-no-match 'separator)
@@ -75,9 +75,9 @@
 (use-package cape
   :defer t
   :init
-  (add-to-list 'completion-at-point-functions #'cape-file-capf)
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev-capf)
-  (add-to-list 'completion-at-point-functions #'cape-keyword-capf))
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-keyword))
 
 (setq completion-cycle-threshold 1)
 
