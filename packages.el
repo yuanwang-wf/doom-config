@@ -58,5 +58,6 @@
 (package! thrift-mode)
 (package! embark-vc)
 (package! evil-replace-with-register)
-;;https://github.com/emacs-tree-sitter/tree-sitter-langs/pull/110
-(package! tree-sitter-langs :pin "313e51eff61aefff520b221b283be5c9e948d64b" )
+;https://github.com/emacs-tree-sitter/tree-sitter-langs/pull/110
+(package! evil-textobj-tree-sitter
+  :recipe (:host github :repo "yuanw/evil-textobj-tree-sitter" :branch "java-comment-fix"))
