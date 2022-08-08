@@ -150,7 +150,9 @@
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ; a language you can depend on
        ;;json              ; At least it ain't XML
-       (java +lsp +tree-sitter) ; the poster child for carpal tunnel syndrome
+       (java +lsp
+             ;; +tree-sitter
+             ) ; the poster child for carpal tunnel syndrome
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
@@ -163,6 +165,8 @@
        nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org
+        +dragndrop
+        +pandoc
         +present
         +roam2
         )               ; organize your plain life in plain text
