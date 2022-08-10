@@ -28,6 +28,7 @@
         (corfu +orderless)
        ( vertico +icons )           ; the search engine of the future
 
+
        :ui
        ;;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
@@ -50,7 +51,7 @@
        ;;tabs              ; a tab bar for Emacs
        ;;treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
-       vc-gutter         ; vcs diff in the fringe
+       ( vc-gutter +diff-hl)         ; vcs diff in the fringe
        ;; vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        ;;window-select     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
@@ -151,7 +152,7 @@
        ;;idris             ; a language you can depend on
        ;;json              ; At least it ain't XML
        (java +lsp
-             ;; +tree-sitter
+             +tree-sitter
              ) ; the poster child for carpal tunnel syndrome
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB

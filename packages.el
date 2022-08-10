@@ -61,3 +61,4 @@
 ;https://github.com/emacs-tree-sitter/tree-sitter-langs/pull/110
 (package! evil-textobj-tree-sitter
   :recipe (:host github :repo "yuanw/evil-textobj-tree-sitter" :branch "java-comment-fix"))
+(package! keycast :pin "72d9add8ba16e0cae8cfcff7fc050fa75e493b4e")
