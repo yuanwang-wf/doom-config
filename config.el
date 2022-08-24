@@ -141,12 +141,13 @@
           (add-to-list 'global-mode-string '("" mode-line-keycast " ")))
       (remove-hook 'pre-command-hook 'keycast--update)
       (setq global-mode-string (remove '("" mode-line-keycast " ") global-mode-string))))
-  (custom-set-faces!
-    '(keycast-command :inherit doom-modeline-debug
-                      :height 0.9)
-    '(keycast-key :inherit custom-modified
-                  :height 1.1
-                  :weight bold)))
+  ;; (custom-set-faces!
+  ;;   '(keycast-command :inherit doom-modeline-debug
+  ;;                     :height 0.9)
+  ;;   '(keycast-key :inherit custom-modified
+  ;;                 :height 1.1
+  ;;                 :weight bold))
+  )
 (setq
     magit-list-refs-sortby "-committerdate"
     ;; org-export-with-broken-links t

@@ -49,8 +49,6 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 (package! interaction-log)
-(package! writegood-mode
-  :recipe (:host github :repo "bnbeckwith/writegood-mode"))
 (package! evil-motion-trainer
   :recipe (:host github :repo "martinbaillie/evil-motion-trainer"))
 (package! super-save)
@@ -59,6 +57,7 @@
 (package! embark-vc)
 (package! evil-replace-with-register)
 ;https://github.com/emacs-tree-sitter/tree-sitter-langs/pull/110
-(package! evil-textobj-tree-sitter
-  :recipe (:host github :repo "yuanw/evil-textobj-tree-sitter" :branch "java-comment-fix"))
+(package! tree-sitter-langs
+  :pin "5c6900a66a6b3a5d4ae6bde5199b5288c09af43b"
+  )
 (package! keycast :pin "72d9add8ba16e0cae8cfcff7fc050fa75e493b4e")
