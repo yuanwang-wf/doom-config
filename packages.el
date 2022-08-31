@@ -60,4 +60,5 @@
 (package! tree-sitter-langs
   :pin "5c6900a66a6b3a5d4ae6bde5199b5288c09af43b"
   )
-(package! keycast :pin "72d9add8ba16e0cae8cfcff7fc050fa75e493b4e")
+(package! keycast
+           )

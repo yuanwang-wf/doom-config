@@ -138,9 +138,9 @@
     (if keycast-mode
         (progn
           (add-hook 'pre-command-hook 'keycast--update t)
-          (add-to-list 'global-mode-string '("" mode-line-keycast " ")))
+          (add-to-list 'global-mode-string '("" keycast-mode-line " ")))
       (remove-hook 'pre-command-hook 'keycast--update)
-      (setq global-mode-string (remove '("" mode-line-keycast " ") global-mode-string))))
+      (setq global-mode-string (remove '("" keycast-mode-line " ") global-mode-string))))
   ;; (custom-set-faces!
   ;;   '(keycast-command :inherit doom-modeline-debug
   ;;                     :height 0.9)

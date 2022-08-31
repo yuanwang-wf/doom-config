@@ -13,7 +13,7 @@
 ;;
 ;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its
 ;;      directory (for easy access to its source code).
-
+(when EMACS29+ (add-to-list 'default-frame-alist '(undecorated . t)))
 
 (doom! :input
        ;;chinese
@@ -95,7 +95,7 @@
        :tools
        ;;ansible
        (debugger +lsp)          ; FIXME stepping through code, to help you add bugs
-       diren
+       direnv
        ;;docker
        editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
@@ -167,7 +167,7 @@
        ;;ocaml             ; an objective camel
        (org
         +dragndrop
-        +pandoc
+        ;; +pandoc
         +present
         +roam2
         )               ; organize your plain life in plain text
