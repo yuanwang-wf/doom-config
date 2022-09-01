@@ -48,16 +48,19 @@
 ;;
 ;;; Keybinds
 
-(map! (:after evil-org
-       :map evil-org-mode-map
-       :n "gk" (cmd! (if (org-on-heading-p)
-                         (org-backward-element)
-                       (evil-previous-visual-line)))
-       :n "gj" (cmd! (if (org-on-heading-p)
-                         (org-forward-element)
-                       (evil-next-visual-line))))
+(map!
 
-      :o "o" #'evil-inner-symbol
+ ;; (:after evil-org
+
+ ;;       :map evil-org-mode-map
+ ;;       :n "gk" (cmd! (if (org-on-heading-p)
+ ;;                         (org-backward-element)
+ ;;                       (evil-previous-visual-line)))
+ ;;       :n "gj" (cmd! (if (org-on-heading-p)
+ ;;                         (org-forward-element)
+ ;;                       (evil-next-visual-line))))
+
+      ;; :o "o" #'evil-inner-symbol
 
       :leader
       ;; (:prefix "n"
@@ -68,8 +71,11 @@
       ;;  "r" #'org-roam-node-find
       ;;  "R" #'org-roam-capture)
 
-      (:prefix "i"
-       "o" #'org-insert-todo-heading
+      ;; (:prefix "i"
+      ;;  "o" #'org-insert-todo-heading
+      ;;  )
+     (:prefix "t"
+       "k" #'keycast-mode
        )
 
       )
@@ -141,12 +147,12 @@
           (add-to-list 'global-mode-string '("" keycast-mode-line " ")))
       (remove-hook 'pre-command-hook 'keycast--update)
       (setq global-mode-string (remove '("" keycast-mode-line " ") global-mode-string))))
-  ;; (custom-set-faces!
-  ;;   '(keycast-command :inherit doom-modeline-debug
-  ;;                     :height 0.9)
-  ;;   '(keycast-key :inherit custom-modified
-  ;;                 :height 1.1
-  ;;                 :weight bold))
+  (custom-set-faces!
+    '(keycast-command :inherit doom-modeline-debug
+                      :height 0.9)
+    '(keycast-key :inherit custom-modified
+                  :height 1.1
+                  :weight bold))
   )
 (setq
     magit-list-refs-sortby "-committerdate"
