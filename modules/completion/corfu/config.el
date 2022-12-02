@@ -4,15 +4,17 @@
   :custom
   (corfu-separator ?\s)
   (corfu-auto t)
-  (corfu-auto-delay 0.0)
+  (corfu-auto-delay 0.3)
   (corfu-preview-current nil)    ;; Disable current candidate preview
   (corfu-on-exact-match nil)
-  (corfu-quit-no-match 'separator)
+  (corfu-quit-no-match t)
+  ;; (corfu-quit-no-match 'separator)
   (corfu-cycle t)
   (corfu-auto-prefix 2)
   (completion-cycle-threshold 1)
   (tab-always-indent 'complete)
-  (corfu-max-width 80)
+  (corfu-min-width 80)
+  (corfu-max-width corfu-min-width)
   (corfu-preselect-first nil)
   :hook
   (doom-first-buffer . global-corfu-mode)
@@ -20,12 +22,6 @@
   (when (modulep! +minibuffer)
     (add-hook 'minibuffer-setup-hook #'+corfu--enable-in-minibuffer))
 
-  ;; Dirty hack to get c completion running
-  ;; Discussion in https://github.com/minad/corfu/issues/34
-  (when (and (modulep! :lang cc)
-             (equal tab-always-indent 'complete))
-    (map! :map c-mode-base-map
-          :i [remap c-indent-line-or-region] #'completion-at-point))
 
   ;; Reset lsp-completion provider
   (add-hook 'doom-init-modules-hook
@@ -34,7 +30,6 @@
                 (setq lsp-completion-provider :none))))
 
   ;; Set orderless filtering for LSP-mode completions
-  ;; TODO: expose a Doom variable to control this part
   (add-hook 'lsp-completion-mode-hook
             (lambda ()
               (setf (alist-get 'lsp-capf completion-category-defaults) '((styles . (orderless flex))))))
@@ -60,19 +55,10 @@
         (corfu-insert)
       (funcall orig)))
 
-  ;; TODO: check how to deal with Daemon/Client workflow with that
-  (unless (display-graphic-p)
-    (corfu-doc-terminal-mode)
-    (corfu-terminal-mode)))
+  ;; (unless (display-graphic-p)
+  ;;   (corfu-doc-terminal-mode)
+  ;;   (corfu-terminal-mode)))
 
-(use-package! corfu-doc
-  :hook (corfu-mode . corfu-doc-mode)
-  :custom
-  (corfu-doc-delay 0)
-  :bind (:map corfu-map
-         ("M-n" . corfu-doc-scroll-down)
-         ("M-p" . corfu-doc-scroll-up)
-         ("M-d" . corfu-doc-toggle)))
 
 (use-package! orderless
   :when (modulep! +orderless)
@@ -154,5 +140,23 @@
          ("M-q" . corfu-quick-complete)
          ("C-q" . corfu-quick-insert)))
 
-(when (modulep! :editor evil +everywhere)
-  (setq evil-collection-corfu-key-themes '(default magic-return)))
+(use-package! corfu-echo
+  :after corfu
+  :hook (corfu-mode . corfu-echo-mode))
+
+
+(use-package! corfu-info
+  :after corfu)
+
+
+(use-package! corfu-popupinfo
+  :after corfu
+  :hook (corfu-mode . corfu-popupinfo-mode))
+
+
+(use-package! evil-collection-corfu
+  :when (modulep! :editor evil +everywhere)
+  :defer t
+  :init (setq evil-collection-corfu-key-themes '(default magic-return))
+  :config
+  (evil-collection-corfu-setup))
