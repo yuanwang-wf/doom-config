@@ -5,10 +5,8 @@
   (corfu-separator ?\s)
   (corfu-auto t)
   (corfu-auto-delay 0.3)
-  (corfu-preview-current nil)    ;; Disable current candidate preview
   (corfu-on-exact-match nil)
   (corfu-quit-no-match t)
-  ;; (corfu-quit-no-match 'separator)
   (corfu-cycle t)
   (corfu-auto-prefix 2)
   (completion-cycle-threshold 1)
@@ -22,6 +20,12 @@
   (when (modulep! +minibuffer)
     (add-hook 'minibuffer-setup-hook #'+corfu--enable-in-minibuffer))
 
+  ;; Dirty hack to get c completion running
+  ;; Discussion in https://github.com/minad/corfu/issues/34
+  (when (and (modulep! :lang cc)
+             (equal tab-always-indent 'complete))
+    (map! :map c-mode-base-map
+          :i [remap c-indent-line-or-region] #'completion-at-point))
 
   ;; Reset lsp-completion provider
   (add-hook 'doom-init-modules-hook
@@ -34,15 +38,22 @@
             (lambda ()
               (setf (alist-get 'lsp-capf completion-category-defaults) '((styles . (orderless flex))))))
 
+  (defun corfu-move-to-minibuffer ()
+    "Move current completions to the minibuffer"
+    (interactive)
+    (let ((completion-extra-properties corfu--extra)
+          completion-cycle-threshold completion-cycling)
+      (apply #'consult-completion-in-region completion-in-region--data)))
+
   (map! :map corfu-map
         "C-SPC"    #'corfu-insert-separator
         "C-n"      #'corfu-next
         "C-p"      #'corfu-previous
+        "M-m"      #'corfu-move-to-minibuffer
         (:prefix "C-x"
-         "C-k"     #'cape-dict
-         "s"       #'cape-ispell
-         "C-n"     #'cape-keyword
-         "C-f"     #'cape-file))
+                 "C-k"     #'cape-dict
+                 "C-f"     #'cape-file))
+
   (after! evil
     (advice-add 'corfu--setup :after 'evil-normalize-keymaps)
     (advice-add 'corfu--teardown :after 'evil-normalize-keymaps)
@@ -55,9 +66,9 @@
         (corfu-insert)
       (funcall orig)))
 
-  ;; (unless (display-graphic-p)
-  ;;   (corfu-doc-terminal-mode)
-  ;;   (corfu-terminal-mode)))
+  (unless (display-graphic-p)
+    (corfu-doc-terminal-mode)
+    (corfu-terminal-mode)))
 
 
 (use-package! orderless
@@ -66,6 +77,7 @@
   (setq completion-styles '(orderless partial-completion)
         completion-category-defaults nil
         completion-category-overrides '((file (styles . (partial-completion))))))
+
 
 (use-package! kind-icon
   :after corfu
@@ -137,8 +149,8 @@
 (use-package! corfu-quick
   :after corfu
   :bind (:map corfu-map
-         ("M-q" . corfu-quick-complete)
-         ("C-q" . corfu-quick-insert)))
+              ("C-q" . corfu-quick-insert)))
+
 
 (use-package! corfu-echo
   :after corfu
