@@ -56,8 +56,6 @@
 (package! thrift-mode)
 (package! embark-vc)
 (package! evil-replace-with-register)
-;https://github.com/emacs-tree-sitter/tree-sitter-langs/pull/110
-(package! tree-sitter-langs
-  :pin "5c6900a66a6b3a5d4ae6bde5199b5288c09af43b"
-  )
 (package! keycast)
+(package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el"))
+  :pin "cc02f2533782d6b9b628cec7e2dcf25b2d05a27c" :disable t)

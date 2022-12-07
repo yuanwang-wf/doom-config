@@ -154,6 +154,8 @@
                   :height 1.1
                   :weight bold))
   )
+(use-package! vlf-setup
+  :defer-incrementally vlf-tune vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
 (setq
     magit-list-refs-sortby "-committerdate"
 magit-log-section-commit-count 25
