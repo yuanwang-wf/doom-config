@@ -155,7 +155,7 @@
                   :weight bold))
   )
 (use-package! vlf-setup
-  :defer-incrementally vlf-tune vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
+  :defer-incrementally  vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
 (setq
     magit-list-refs-sortby "-committerdate"
 magit-log-section-commit-count 25
@@ -194,3 +194,7 @@ magit-log-section-commit-count 25
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(setf org-html-mathjax-template
+"<script src=\"https://polyfill.io/v3/polyfill.min.js?features=es6\"></script><script id=\"MathJax-script\" async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js\"></script>"
+      )
