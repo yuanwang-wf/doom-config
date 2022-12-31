@@ -154,23 +154,27 @@
                   :height 1.1
                   :weight bold))
   )
-(use-package! vlf-setup
-  :defer-incrementally  vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
+;; (use-package! vlf-setup
+;;   :defer-incrementally  vlf-base vlf-write vlf-search vlf-occur vlf-follow vlf-ediff vlf)
 (setq
     magit-list-refs-sortby "-committerdate"
-magit-log-section-commit-count 25
+    magit-log-section-commit-count 25
     ;; org-export-with-broken-links t
     ;; org-id-track-globally t
     lsp-enable-on-type-formatting nil
-    lsp-java-completion-max-results 20
+    lsp-java-completion-max-results 130
+       lsp-modeline-code-actions-enable nil
+        lsp-modeline-diagnostics-enable nil
+
     lsp-java-vmargs
       '("-noverify"
-        "-Xmx5G"
-        "-Xms100m"
-        "-XX:+UseParallelGC"
-        "-XX:GCTimeRatio=4"
-        "-XX:AdaptiveSizePolicyWeight=90"
-        "-Dsun.zip.disableMemoryMapping=true"
+        "-Xmx3G"
+        ;; "-Xms100m"
+        ;; "-XX:+UseParallelGC"
+        "-XX:+UseG1GC"
+        ;; "-XX:GCTimeRatio=4"
+        ;; "-XX:AdaptiveSizePolicyWeight=90"
+        ;; "-Dsun.zip.disableMemoryMapping=true"
         "-XX:+UseStringDeduplication"
         "-javaagent:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.16/lombok-1.18.16.jar"
         "-Xbootclasspath/a:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.16/lombok-1.18.16.jar"))

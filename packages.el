@@ -57,5 +57,9 @@
 (package! embark-vc)
 (package! evil-replace-with-register)
 (package! keycast)
-(package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el"))
-  :pin "cc02f2533782d6b9b628cec7e2dcf25b2d05a27c" :disable t)
+;; (package! vlf :recipe (:host github :repo "m00natic/vlfi" :files ("*.el"))
+  ;; :pin "cc02f2533782d6b9b628cec7e2dcf25b2d05a27c" :disable t)
+;https://github.com/emacs-tree-sitter/tree-sitter-langs/pull/110
+(package! tree-sitter-langs
+  :pin "388dcbbc237b2b1360e5b148e67b158eecede805"
+  )
