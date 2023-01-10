@@ -86,26 +86,26 @@
 ;;; :ui modeline
 ;; An evil mode indicator is redundant with cursor shape
 (advice-add #'doom-modeline-segment--modals :override #'ignore)
+
 (setq org-agenda-custom-commands
       `(("d" "Dashboard"
-          ((agenda "" ((org-deadline-warning-days 7)))
-          ((tags-todo "+PRIORITY=\"A\""
+         (
+          ;; (agenda "" ((org-deadline-warning-days 3)))
+          (todo "TODO"
+                ((org-agenda-overriding-header "Work")
+                 (org-agenda-files '("~/org/agenda/workiva.org"))
+                 (org-agenda-text-search-extra-files nil)))
+
+          (tags-todo "+PRIORITY=\"A\""
                      ((org-agenda-overriding-header "High Priority")))
           (tags-todo "+followup" ((org-agenda-overriding-header "Needs Follow Up")))
-          (todo "NEXT"
+          (tags-todo "+next"
                 ((org-agenda-overriding-header "Next Actions")
                  (org-agenda-max-todos nil)))
           (todo "TODO"
                 ((org-agenda-overriding-header "Unprocessed Inbox Tasks")
                  (org-agenda-files '("~/org/agenda/inbox.org"))
-                 (org-agenda-text-search-extra-files nil)))
-                    (todo "TODO"
-                ((org-agenda-overriding-header "Work")
-                 (org-agenda-files '("~/org/agenda/workiva.org"))
-                 (org-agenda-text-search-extra-files nil)))
-
-          )
-         )
+                 (org-agenda-text-search-extra-files nil )))))
 
         ("n" "Next Tasks"
          ((agenda "" ((org-deadline-warning-days 7)))
@@ -113,10 +113,12 @@
                 ((org-agenda-overriding-header "Next Tasks")))))
 
         ;; Low-effort next actions
-        ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
-         ((org-agenda-overriding-header "Low Effort Tasks")
-          (org-agenda-max-todos 20)
-          (org-agenda-files org-agenda-files)))))
+        ;; ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
+        ;;  ((org-agenda-overriding-header "Low Effort Tasks")
+        ;;   (org-agenda-max-todos 20)
+        ;;   (org-agenda-files org-agenda-files) ) )
+        ))
+
 ;; Disable invasive lsp-mode features
 (setq lsp-ui-sideline-enable nil   ; not anymore useful than flycheck
       lsp-ui-doc-enable nil        ; slow and redundant with K
