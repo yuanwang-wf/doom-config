@@ -107,17 +107,10 @@
                  (org-agenda-files '("~/org/agenda/inbox.org"))
                  (org-agenda-text-search-extra-files nil )))))
 
-        ("n" "Next Tasks"
-         ((agenda "" ((org-deadline-warning-days 7)))
-          (todo "NEXT"
-                ((org-agenda-overriding-header "Next Tasks")))))
-
-        ;; Low-effort next actions
-        ;; ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
-        ;;  ((org-agenda-overriding-header "Low Effort Tasks")
-        ;;   (org-agenda-max-todos 20)
-        ;;   (org-agenda-files org-agenda-files) ) )
-        ))
+        ("i" "Next Tasks"
+         (
+          (tags-todo "+next"
+                ((org-agenda-overriding-header "Next Tasks")))))))
 
 ;; Disable invasive lsp-mode features
 (setq lsp-ui-sideline-enable nil   ; not anymore useful than flycheck
