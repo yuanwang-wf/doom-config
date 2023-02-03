@@ -192,7 +192,9 @@
         lsp-modeline-diagnostics-enable nil
 
     lsp-java-vmargs
-      '("-noverify"
+      '(
+
+        ;;"-noverify"
         "-Xmx3G"
         ;; "-Xms100m"
         ;; "-XX:+UseParallelGC"
@@ -204,9 +206,9 @@
         "-javaagent:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.16/lombok-1.18.16.jar"
         "-Xbootclasspath/a:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.16/lombok-1.18.16.jar"))
 
-;; (setq lsp-java-configuration-runtimes '[(:name "JavaSE-11"
-;; 						:path "/Users/yuanwang/.sdkman/candidates/java/11.0.4-amzn/"
-;; 						:default t)])
+(setq lsp-java-configuration-runtimes '[(:name "JavaSE-17"
+						:path "/Users/yuanwang/.sdkman/candidates/java/17.0.5-amzn/"
+						:default t)])
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
