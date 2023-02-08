@@ -1,0 +1,2 @@
+#+title: corfu
+https://github.com/elken/doom/blob/master/modules/completion/corfu/packages.el

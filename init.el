@@ -21,13 +21,13 @@
        ;;layout            ; auie,ctsrnm is the superior home row
 
        :completion
-       ;; (company +childframe)           ; the ultimate code completion backend
+        (company +childframe)           ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        ;;ivy               ; a search engine for love and life
-        (corfu
-         +icons
-         +orderless)
+       ;; (corfu
+       ;;  +icons
+       ;;  +orderless)
        ( vertico +icons )           ; the search engine of the future
 
 
@@ -107,7 +107,7 @@
 	 ;;+docsets 
 	 +dicitonary
 	 )              ; navigate your code and its documentation
-       (lsp +eglot)              ; M-x vscode
+       (lsp)              ; M-x vscode
        ( magit
          +forge)             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs

@@ -1,4 +1,4 @@
-;;; completion/corfu/autoload.el -*- lexical-binding: t; -*-
+;;; completion/corfu/autoload/extra.el -*- lexical-binding: t; -*-
 
 ;;;###autoload
 (defun +corfu-complete-file-at-point ()
@@ -22,18 +22,14 @@
 
 ;;;###autoload
 (defun +corfu-ispell ()
-  "Complete using ispell source.
-
-See `ispell-lookup-words' for more info"
+  "Complete using ispell source. See `ispell-lookup-words' for more info"
   (interactive)
   (let ((completion-at-point-functions (list #'+ispell-completion-at-point-function)))
     (completion-at-point)))
 
 ;;;###autoload
 (defun +corfu-dict ()
-  "Complete using dict source.
-
-See `+dict--words' for extra words, and `+dict-file' for a wordslist source "
+  "Complete using dict source. See `+dict--words' for extra words, and `+dict-file' for a wordslist source "
   (interactive)
   (let ((completion-at-point-functions (list #'+dict-completion-at-point-function)))
     (completion-at-point)))
