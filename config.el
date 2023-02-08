@@ -206,6 +206,12 @@
         "-javaagent:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.16/lombok-1.18.16.jar"
         "-Xbootclasspath/a:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.16/lombok-1.18.16.jar"))
 
+(add-to-list 'eglot-server-programs
+               `(java-mode "jdtls"
+                           "-Djava.format.settings.url=https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
+                           "-Djava.format.settings.profile=GoogleStyle"
+                           ,(concat "--jvm-arg=-javaagent:" (expand-file-name "/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar"))))
+
 (setq lsp-java-configuration-runtimes '[(:name "JavaSE-17"
 						:path "/Users/yuanwang/.sdkman/candidates/java/17.0.5-amzn/"
 						:default t)])
