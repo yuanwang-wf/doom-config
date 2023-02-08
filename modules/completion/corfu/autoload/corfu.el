@@ -1,6 +1,4 @@
-;;; completion/corfu/autoload/minibuffer.el -*- lexical-binding: t; -*-
-;;;###if (modulep! :completion corfu +minibuffer)
-
+;;; completion/corfu/autoload/corfu.el -*- lexical-binding: t; -*-
 ;;;###autoload
 (defun +corfu--enable-in-minibuffer ()
   (unless (or (bound-and-true-p mct--active)
