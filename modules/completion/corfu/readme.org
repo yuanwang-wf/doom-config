@@ -1,2 +1,3 @@
 #+title: corfu
+https://git.sr.ht/~gagbo/doom-config/tree/master/item/modules/completion/corfu
 https://github.com/elken/doom/blob/master/modules/completion/corfu/packages.el

@@ -1,18 +1,51 @@
 ;;; completion/corfu/config.el -*- lexical-binding: t; -*-
 
+;; Corfu completion module
+
+(defvar +corfu-global-capes
+  '(cape-yasnippet
+    :completion
+    cape-dict)
+  "A list of global capes to be available at all times.
+The key :completion is used to specify where completion candidates should be
+placed, otherwise they come first.")
+
+(defvar +corfu-capf-hosts
+  '(lsp-completion-at-point
+    eglot-completion-at-point
+    elisp-completion-at-point
+    tags-completion-at-point-function)
+  "A prioritised list of host capfs to create a super cape onto from
+  `+corfu-global-capes'.")
+
+(defun +corfu--load-capes ()
+  "Load all capes specified in `+corfu-global-capes'."
+  (interactive)
+  (when-let ((host (cl-intersection +corfu-capf-hosts completion-at-point-functions)))
+    (setq-local
+     completion-at-point-functions
+     (cl-substitute
+      (apply #'cape-super-capf (cl-substitute (car host) :completion (cl-pushnew :completion +corfu-global-capes)))
+      (car host)
+      completion-at-point-functions))))
+
+(add-hook 'lsp-mode-hook #'+corfu--load-capes)
+(add-hook 'eglot-mode-hook #'+corfu--load-capes)
+(add-hook 'change-major-mode-hook #'+corfu--load-capes)
+
 (use-package! corfu
   :custom
   (corfu-separator ?\s)
   (corfu-auto t)
-  (corfu-auto-delay 0.3)
+  (corfu-auto-delay 0.2)
+  (corfu-preview-current nil) ;; Disable current candidate preview
   (corfu-on-exact-match nil)
-  (corfu-quit-no-match t)
+  (corfu-quit-no-match 'separator)
   (corfu-cycle t)
   (corfu-auto-prefix 2)
   (completion-cycle-threshold 1)
   (tab-always-indent 'complete)
-  (corfu-min-width 80)
-  (corfu-max-width corfu-min-width)
+  (corfu-max-width 80)
   (corfu-preselect-first nil)
   :hook
   (doom-first-buffer . global-corfu-mode)
@@ -34,6 +67,7 @@
                 (setq lsp-completion-provider :none))))
 
   ;; Set orderless filtering for LSP-mode completions
+  ;; TODO: expose a Doom variable to control this part
   (add-hook 'lsp-completion-mode-hook
             (lambda ()
               (setf (alist-get 'lsp-capf completion-category-defaults) '((styles . (orderless flex))))))
@@ -52,8 +86,9 @@
         "M-m"      #'corfu-move-to-minibuffer
         (:prefix "C-x"
                  "C-k"     #'cape-dict
+                 "s"       #'cape-ispell
+                 "C-n"     #'cape-keyword
                  "C-f"     #'cape-file))
-
   (after! evil
     (advice-add 'corfu--setup :after 'evil-normalize-keymaps)
     (advice-add 'corfu--teardown :after 'evil-normalize-keymaps)
@@ -66,10 +101,10 @@
         (corfu-insert)
       (funcall orig)))
 
+  ;; TODO: check how to deal with Daemon/Client workflow with that
   (unless (display-graphic-p)
     (corfu-doc-terminal-mode)
     (corfu-terminal-mode)))
-
 
 (use-package! orderless
   :when (modulep! +orderless)
@@ -77,7 +112,6 @@
   (setq completion-styles '(orderless partial-completion)
         completion-category-defaults nil
         completion-category-overrides '((file (styles . (partial-completion))))))
-
 
 (use-package! kind-icon
   :after corfu
@@ -100,11 +134,11 @@
           (field "fd" :icon "application-braces-outline" :face font-lock-variable-name-face)
           (file "f" :icon "file" :face font-lock-string-face)
           (folder "d" :icon "folder" :face font-lock-doc-face)
-          (function "f" :icon "sigma" :face font-lock-function-name-face)
+          (function "f" :icon "lambda" :face font-lock-function-name-face)
           (interface "if" :icon "video-input-component" :face font-lock-type-face)
           (keyword "kw" :icon "image-filter-center-focus" :face font-lock-keyword-face)
-          (macro "mc" :icon "lambda" :face font-lock-keyword-face)
-          (method "m" :icon "sigma" :face font-lock-function-name-face)
+          (macro "mc" :icon "sigma" :face font-lock-keyword-face)
+          (method "m" :icon "lambda" :face font-lock-function-name-face)
           (module "{" :icon "view-module" :face font-lock-preprocessor-face)
           (numeric "nu" :icon "numeric" :face font-lock-builtin-face)
           (operator "op" :icon "plus-circle-outline" :face font-lock-comment-delimiter-face)
@@ -149,8 +183,8 @@
 (use-package! corfu-quick
   :after corfu
   :bind (:map corfu-map
+              ("M-q" . corfu-quick-complete)
               ("C-q" . corfu-quick-insert)))
-
 
 (use-package! corfu-echo
   :after corfu
@@ -165,10 +199,17 @@
   :after corfu
   :hook (corfu-mode . corfu-popupinfo-mode))
 
+(when (modulep! :editor evil +everywhere)
+  (setq evil-collection-corfu-key-themes '(default magic-return)))
 
-(use-package! evil-collection-corfu
-  :when (modulep! :editor evil +everywhere)
-  :defer t
-  :init (setq evil-collection-corfu-key-themes '(default magic-return))
-  :config
-  (evil-collection-corfu-setup))
+(use-package! cape-yasnippet
+  :after cape)
+
+;; Override :config default mapping by waiting for after corfu is loaded
+(add-hook! 'doom-after-modules-config-hook
+  (defun +corfu-unbind-yasnippet-h ()
+    "Remove problematic tab bindings in cmds! on :i TAB"
+    (map! :i [tab] nil
+          :i "TAB" nil
+          :i "C-SPC" #'completion-at-point
+          :i "C-@" #'completion-at-point)))
