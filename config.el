@@ -24,6 +24,8 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-palenight
       doom-font (font-spec :family "PragmataPro" :size 18))
+;; .doom.d/config.el
+(setq  fancy-splash-image  "~/.config/wallpapers/doom.svg")
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -113,9 +115,10 @@
                 ((org-agenda-overriding-header "Next Tasks")))))))
 
 ;; Disable invasive lsp-mode features
-(setq lsp-ui-sideline-enable nil   ; not anymore useful than flycheck
-      lsp-ui-doc-enable nil        ; slow and redundant with K
-      lsp-enable-symbol-highlighting nil
+(setq
+      ;; lsp-ui-sideline-enable nil   ; not anymore useful than flycheck
+      ;; lsp-ui-doc-enable nil        ; slow and redundant with K
+      ;; lsp-enable-symbol-highlighting nil
       lsp-file-watch-threshold 5000
       ;; If an LSP server isn't present when I start a prog-mode buffer, you
       ;; don't need to tell me. I know. On some systems I don't care to have a
@@ -188,17 +191,15 @@
     ;; org-id-track-globally t
     lsp-enable-on-type-formatting nil
     lsp-java-completion-max-results 130
-       lsp-modeline-code-actions-enable nil
-        lsp-modeline-diagnostics-enable nil
+       ;; lsp-modeline-code-actions-enable nil
+       ;;  lsp-modeline-diagnostics-enable nil
 
     lsp-java-vmargs
       '(
-
         ;;"-noverify"
         "-Xmx2G"
         "-Xms100m"
         "-XX:+UseParallelGC"
-        ;; "-XX:+UseG1GC"
 	"-Xlog:disable"
         "-XX:GCTimeRatio=4"
         "-XX:AdaptiveSizePolicyWeight=90"
@@ -207,16 +208,15 @@
         "-javaagent:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar"
         "-Xbootclasspath/a:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar"))
 
-;; (use-package! eglot
-;;   :config
+(after! eglot
+  :config
+ (add-to-list 'eglot-server-programs
+              `(java-mode "jdtls"
+                           "-Djava.format.settings.url=https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
+                           "-Djava.format.settings.profile=GoogleStyle"
+                           ,(concat "--jvm-arg=-javaagent:" (expand-file-name "/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar"))))
 
-;;  (add-to-list 'eglot-server-programs
-;;               `(java-mode "jdtls"
-;;                            "-Djava.format.settings.url=https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
-;;                            "-Djava.format.settings.profile=GoogleStyle"
-;;                            ,(concat "--jvm-arg=-javaagent:" (expand-file-name "/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar"))))
-
-;;  )
+ )
 
 ;;                  ))
 

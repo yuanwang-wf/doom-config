@@ -27,7 +27,7 @@
        ;;ivy               ; a search engine for love and life
        ;; (corfu
        ;; +icons
-       ;; +tng)
+       ;; +minibuffer
        ;; +orderless)
        ( vertico +icons )           ; the search engine of the future
 
@@ -139,7 +139,7 @@
        ;;data              ; config/data formats
        (dart +lsp   )   ; paint ui and not much else
 
-       ;;dhall
+       dhall
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
