@@ -25,8 +25,7 @@
 (setq doom-theme 'doom-palenight
       doom-font (font-spec :family "PragmataPro" :size 18))
 ;; .doom.d/config.el
-(setq  fancy-splash-image  "~/.config/wallpapers/doom.svg"
-        abbrev-file-name (concat doom-private-dir "abbrevs.el"))
+(setq  fancy-splash-image  "~/.config/wallpapers/doom.svg")
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
