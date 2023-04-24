@@ -22,8 +22,12 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-palenight
+(setq
+       doom-theme 'doom-palenight
+      ;; doom-theme 'doom-nano-dark-theme
       doom-font (font-spec :family "PragmataPro" :size 18))
+;; (after! doom-themes
+;;   (load-theme 'doom-nano-light t))
 ;; .doom.d/config.el
 (setq  fancy-splash-image  "~/.config/wallpapers/doom.svg")
 
@@ -140,7 +144,7 @@
  )
 (after! browse-at-remote
   (setq browse-at-remote-add-line-number-if-no-region-selected t))
-
+(add-transient-hook! 'focus-out-hook (atomic-chrome-start-server))
 (after! org
   (setq org-eukleides-path (getenv "EUKLEIDES_PATH")
         org-agenda-dim-blocked-tasks nil
