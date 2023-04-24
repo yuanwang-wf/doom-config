@@ -209,8 +209,8 @@
         "-XX:AdaptiveSizePolicyWeight=90"
         "-Dsun.zip.disableMemoryMapping=true"
         "-XX:+UseStringDeduplication"
-        "-javaagent:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar"
-        "-Xbootclasspath/a:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar"))
+        "-javaagent:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.26/lombok-1.18.26.jar"
+        "-Xbootclasspath/a:/Users/yuanwang/.m2/repository/org/projectlombok/lombok/1.18.26/lombok-1.18.26.jar"))
 
 (after! eglot
   :config
