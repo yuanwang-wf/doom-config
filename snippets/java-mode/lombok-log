@@ -1,7 +1,5 @@
 # -*- mode: snippet -*-
 # name: lombok log
-# key: trigger-key
-# condition: t
 # --
 
 import lombok.extern.slf4j.Slf4j;

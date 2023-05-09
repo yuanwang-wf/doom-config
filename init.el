@@ -108,8 +108,8 @@
 	 ;;+docsets 
 	 +dicitonary
 	 )              ; navigate your code and its documentation
-       ;; (lsp +eglot)              ; M-x vscode
-       (lsp)              ; M-x vscode
+       (lsp +eglot)              ; M-x vscode
+       ;; (lsp)              ; M-x vscode
        ( magit
          +forge)             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
@@ -156,6 +156,7 @@
        ;;idris             ; a language you can depend on
        ;;json              ; At least it ain't XML
        (java +lsp
+             +eglot
              +tree-sitter
              ) ; the poster child for carpal tunnel syndrome
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
